@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  owmApiUrl: 'http://api.openweathermap.org/data/2.5/forecast',
+  owmApiID: 'ed404d8aeae66b021d7c870b082913d4', //your openweathermap API ID
+  gpApiUrl: 'https://crossorigin.me/https://maps.googleapis.com/maps/api/place/autocomplete/json',
+  gpApiID: '', //your google places API key
+  vkAPIToken:'d6851f4742849f4bbd41cb7d29a32803ce2beb339acab7b08e4e5904dad7f2af82216742f0f2767270d54'
 };
 
 /*

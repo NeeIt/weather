@@ -1,0 +1,237 @@
+:host{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.bg{
+    width:100vw;
+    min-height:100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("/assets/img/bloody.jpg");
+    background-size: cover;
+}
+    .mask{
+        position: absolute;
+        background-color: rgba(0,0,0,0.4);
+        width:100%;
+        height:100%;
+        z-index: 0;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        top:0;
+        left:0;
+        .title{
+            margin-bottom:150px;
+            color:white;
+            font-size: 1.3em;
+            letter-spacing: 0.125em;
+            word-spacing: 0.4em;
+        }
+    }
+    .searchblock{
+        z-index: 1;
+        background-color: white;
+        position: absolute;
+        border-radius:25px;
+        height:50px;
+        display:flex;
+        align-items: center;
+        top:calc(50% - 25px);
+        transition:top 0.5s ease-in-out;
+        &.top{
+            top:50px;
+         }
+        .searchIco{
+            width:15px;
+            height:15px;
+            margin-left:20px;
+            position: absolute;
+        }
+        input{
+            background-color: rgba(0,0,0,0);
+            border-width: 0px;
+            height:50px;
+            &[type="text"]{
+                padding-left:50px;
+                font-size:1.1em;
+                width:300px;
+            }
+            &[type="button"]{
+                background:url("/assets/img/right-arrow.png") no-repeat ;
+                cursor:pointer;
+                background-size: 15px 15px;
+                background-position: 50% 50%;
+                border: none;
+                width:50px;
+               
+            }
+        }
+        
+    }
+    .results{
+        position: absolute;
+        background-color: rgba(255,255,255,0.7);
+        border-radius:25px;
+        flex-direction: column;
+        padding-top:50px;
+        top:calc(50% - 25px);
+        transition:top 0.5s ease-in-out;
+        display:none;
+        &.show{
+            display: flex;
+        }
+        &.top{
+           top:50px;
+        }
+        .result{
+            height:50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            transition:height 0.5s ease-in-out;
+            &.top{
+                height:0px;
+             }
+        }
+        
+    }
+    .card{
+        overflow: hidden;
+        
+        border-radius:25px;
+        margin-top:70px;
+        opacity:0;
+        z-index: 1;
+        
+        animation: showCard 0.5s 0.3s;
+        color:#333;
+        animation-fill-mode: forwards;
+        @media screen and (max-width:500px){
+            margin-top:150px;
+        }
+        @keyframes showCard {
+            from{
+                opacity:0;
+                transform: translateY(-100px);
+            }
+            to{
+                opacity:1;
+                transform: translateY(0px);
+            }
+        }
+        .head{
+            display:flex;
+            flex-direction: column;
+            
+           
+        }
+        h3{
+            padding:30px;
+            padding-bottom: 0px;
+            font-weight: normal;
+            width:250px;
+            @media screen and (max-width:500px){
+                width:auto;
+
+            }
+        }
+        
+        .today{
+            margin:5px;
+            display:flex;
+            background-color: rgba(255,255,255,0.7);
+            justify-content: space-between;
+            box-shadow: 2px 1px 0px 1px rgba(0,0,0,0.2);
+            margin-bottom:30px;
+            &>h3{
+                text-align: right;
+                @media screen and (max-width:500px){
+                    text-align: center;
+                    margin-bottom:20px;
+                }
+            }
+            
+        }
+        .weatherIco{
+            height:200px;
+            display:block;
+            margin:20px auto;
+            @media screen and (max-width:500px){
+                margin:0 auto;
+            }
+        }
+        .weatherMiniIco{
+            width:100px;
+            margin:0 auto;
+        }
+        .description{
+          
+            display:flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            border-radius: 30px;
+            
+            div{
+                display:flex;
+                flex-direction: column;
+                flex-grow: 1;
+                justify-content: center;
+                align-items: center;
+                padding:30px;
+                background-color: rgba(255,255,255,0.7);
+                box-shadow: 2px 1px 0px 1px rgba(0,0,0,0.2);
+                margin:5px;
+               
+            }
+            
+
+        }
+    }
+    .deg{
+        position:absolute;
+        top:20px;
+        right:20px;
+        width:60px;
+        height:20px;
+        background-color: white;
+        border-radius:15px;
+        cursor:pointer;
+        .state{
+            width:30px;
+            height:30px;
+            border-radius:100%;
+            background-color: rgb(179, 179, 179);
+            box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+            transition: margin-left 0.3s;
+            margin-top:-5px;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+@media screen and (max-width:500px){
+    input{
+        max-width:200px;
+    }
+    .searchblock{
+        &.top{
+            top:10px;
+        }
+     }
+     .today{
+         flex-direction: column;
+     }
+     .card{
+         margin: {
+             left:10px;
+            right:10px;
+            bottom:50px;
+            top:100px;
+
+        } 
+        
+     }
+}

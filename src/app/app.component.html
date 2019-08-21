@@ -1,21 +1,39 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
-<router-outlet></router-outlet>
+<div #bg class="bg">
+    <div class="mask">
+    </div>
+  
+    <div class="searchblock" #search [class.top]="top">
+      <img src="/assets/img/search.png" class="searchIco" alt="ico"><input type="text" #form (input)="newLetter(form.value)" (keydown)="onKeydown($event)"/><input type="button" (click)="animate()"/>
+    </div>
+  
+    <div class="results" [ngStyle]="{'width' : ''+search.offsetWidth+'px'}" [class.top]="top"  [class.show]="!isEmpty(form.value)">
+     <ng-container>
+        <div class="result" [class.top]="top" >{{titles && titles.city && titles.city.name? titles.city.name : "Not Founded"}}</div>
+      </ng-container>
+    </div>
+    <div class="deg" (click)="changeDeg()">
+        <div class="state" [style.marginLeft]="''+((degType=='c')?-5:35)+'px'">
+          {{degType | uppercase}}
+        </div>
+      </div>
+    <div class="card" *ngIf="showCard">
+      <div class="today">
+      <div class="head">
+          <h3>{{now.dt_txt| date:'MM d, y EEEE'}}</h3><h3>{{now.weather[0].description | uppercase }}</h3>
+      </div> 
+      <div class="ico">
+        <img src="http://openweathermap.org/img/wn/{{now.weather[0].icon}}@2x.png" class="weatherIco" alt="weather">
+      </div>
+      <h3>{{now.main.temp |temperature:"K":degType }}</h3>
+    </div>
+      <div class="description">
+        <div class="day" *ngFor="let day of days;let i = index" (click)="x = day; day=now; now=x;" [ngStyle]="{ 'order':day.dt }">
+          {{day.main.temp |temperature:"K":degType }}
+            <img src="http://openweathermap.org/img/wn/{{day.weather[0].icon}}@2x.png" class="weatherMiniIco" alt="weather">
+          {{day.dt_txt | date:'EE, d' }}
+        </div>
+       
+      </div>
+    </div>
+    </div>
+    
